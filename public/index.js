@@ -1,0 +1,100 @@
+export const socket = new WebSocket("ws://localhost:3000");
+socket.onopen = () => {
+  console.log("WS abierto");
+
+  socket.send(JSON.stringify({
+    type: "register",
+    role: "web"
+  }));
+};
+
+socket.onerror = (e) => {
+  console.log(" WS error:", e);
+};
+
+socket.onclose = () => {
+  console.log("WS cerrado");
+};
+
+socket.addEventListener("message", (event) => {
+
+    const msg = JSON.parse(event.data);
+
+    if (msg.type === "note") {
+        seleccionarNota(msg.value);
+    }
+
+    if (msg.type === "result") {
+        console.log("Resultado recibido:", msg.value);
+    }
+
+});
+window.enviarResultado = function(valor) {
+  socket.send(JSON.stringify({
+    type: "result",
+    value: valor
+  }));
+};
+
+
+const digitaciones = {
+  "Do4":  ["W", "R", "T", "U", "I", "O", "M"],
+  "Re4":  ["W", "R", "T", "U", "I", "O"],
+  "Mib4":  ["W", "R", "T", "U", "I", "O", "N"],
+  "Mi4":  ["W", "R", "T", "U", "I"],
+  "Fa4": ["W", "R", "T", "U"],
+  "Fa#4":  ["W", "R", "T", "I"],
+  "Sol4":  ["W", "R", "T"],
+  "Sol#4": ["W", "R", "T","G"],
+  "La4": ["W", "R"],
+  "Sib4": ["W","R","V"],
+  "Si4":["W"],
+  "Do5": ["R"],  
+  "Re5":  ["Z","W", "R", "T", "U", "I", "O"],
+  "Mib5":  ["Z","W", "R", "T", "U", "I", "O", "N"],
+  "Mi5":  ["Z","W", "R", "T", "U", "I"],
+  "Fa5": ["Z","W", "R", "T", "U"],
+  "Fa#5":  ["Z","W", "R", "T", "I"],
+  "Sol5":  ["Z","W", "R", "T"],
+  "Sol#5": ["Z","W", "R", "T","G"],
+  "La5": ["Z","W", "R"],
+  "Sib5": ["Z","W","R","V"],
+  "Si5":["Z","W"],
+  "Do6": ["Z","R"]
+};
+
+function mostrarDigitacion(nota) {
+  document.querySelectorAll(".key, .keyLateral").forEach(k => {
+    k.classList.remove("activa");
+  });
+
+  const teclas = digitaciones[nota];
+  teclas.forEach(id => {
+    document.getElementById(id).classList.add("activa");
+  });
+}
+
+document.querySelectorAll(".btn-nota").forEach(btn => {
+  btn.addEventListener("click", () => {
+    mostrarDigitacion(btn.dataset.nota);
+  });
+});
+
+function seleccionarNota(nota) {
+
+    mostrarDigitacion(nota);
+
+    document.querySelectorAll(".btn-nota").forEach(btn => {
+        btn.classList.remove("btn-light");
+        btn.classList.add("btn-outline-light");
+    });
+
+    const boton = document.querySelector(`.btn-nota[data-nota="${nota}"]`);
+
+    if (boton) {
+        boton.classList.remove("btn-outline-light");
+        boton.classList.add("btn-light");
+    }
+
+}
+

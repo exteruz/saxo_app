@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitaciones Saxofón</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container-fluid py-3">
+
+    <div class="d-flex flex-row align-items-start gap-4 flex-nowrap">
+
+        <!-- ================= MENÚ DE CANCIONES ================= -->
+        <div class="songs-panel">
+
+            <div class="card bg-dark border-secondary shadow">
+
+                <div class="card-header text-center text-white">
+                    <strong>🎵 Canciones</strong>
+                </div>
+
+                <div id="songs-list" class="list-group list-group-flush">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= ZONA CENTRAL ================= -->
+        <div id="player-section">
+
+            <!-- ================= BOTONES DE NOTAS ================= -->
+            <div id="notes-panel">
+
+                <button class="btn btn-outline-light btn-nota" data-nota="Do4">Do4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Re4">Re4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Mib4">Mib4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Mi4">Mi4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Fa4">Fa4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Fa#4">Fa#4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sol4">Sol4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sol#4">Sol#4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="La4">La4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sib4">Sib4</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Si4">Si4</button>
+
+                <button class="btn btn-outline-light btn-nota" data-nota="Do5">Do5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Re5">Re5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Mib5">Mib5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Mi5">Mi5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Fa5">Fa5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Fa#5">Fa#5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sol5">Sol5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sol#5">Sol#5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="La5">La5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Sib5">Sib5</button>
+                <button class="btn btn-outline-light btn-nota" data-nota="Si5">Si5</button>
+
+                <button class="btn btn-outline-light btn-nota" data-nota="Do6">Do6</button>
+
+            </div>
+
+            <!-- ================= PISTA DE REPRODUCCIÓN ================= -->
+            <div id="player-container">
+
+                <div class="player-header">
+                    🎼 Pista de reproducción
+                </div>
+
+                <div id="player-track">
+
+                    <div id="hit-line"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= SAXOFÓN ================= -->
+        <div id="mapa">
+
+            <img src="img/saxFrente.png" alt="Saxofón">
+
+            <div id="M" class="key" style="top:80px; left:295px;"></div>
+            <div id="N" class="key" style="top:125px; left:295px;"></div>
+            <div id="O" class="key" style="top:177px; left:280px;"></div>
+            <div id="I" class="key" style="top:225px; left:280px;"></div>
+            <div id="U" class="key" style="top:270px; left:280px;"></div>
+
+            <div id="K" class="key" style="top:200px; left:190px;"></div>
+            <div id="H" class="key" style="top:243px; left:165px;"></div>
+            <div id="J" class="key" style="top:243px; left:215px;"></div>
+            <div id="G" class="key" style="top:290px; left:190px;"></div>
+
+            <div id="V" class="keyLateral" style="top:162px; left:352px;"></div>
+            <div id="C" class="keyLateral" style="top:202px; left:352px;"></div>
+            <div id="X" class="keyLateral" style="top:242px; left:352px;"></div>
+
+            <div id="T" class="key" style="top:420px; left:210px;"></div>
+            <div id="R" class="key" style="top:470px; left:220px;"></div>
+            <div id="W" class="key" style="top:520px; left:230px;"></div>
+
+            <div id="?" class="keyLateral" style="top:445px; left:125px;"></div>
+            <div id="??" class="keyLateral" style="top:485px; left:125px;"></div>
+            <div id="???" class="keyLateral" style="top:530px; left:125px;"></div>
+
+            <div id="Z" class="key" style="top:202px; left:450px;"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="index.js"></script>
+<script type="module" src="js/songs_menu.js"></script>
+
+</body>
+
+</html>
