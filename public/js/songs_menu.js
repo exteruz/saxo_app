@@ -1,4 +1,5 @@
 import { socket } from "../index.js";
+import { iniciarJuego } from "./player.js"; 
 
 let songs = [];
 let selectedSong = null;
@@ -119,10 +120,12 @@ function mostrarCancion(song) {
 
     });
 
-    document.getElementById("btn-play").addEventListener("click", () => {
-
-        console.log("Reproducir:", selectedSong);
-
+   document.getElementById("btn-play").addEventListener("click", () => {
+        if (selectedSong) {
+            iniciarJuego(selectedSong);
+        } else {
+            console.log("No hay ninguna canción seleccionada");
+        }
     });
 
 }

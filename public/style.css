@@ -242,3 +242,78 @@ body {
 .song-card{
     width: 100%;
 }
+
+/* =========================================
+   BLOQUES DE NOTAS (Estilo Guitar Hero)
+========================================= */
+
+.nota-bloque {
+    position: absolute;
+    left: 25%; /* Centra el bloque en el carril */
+    width: 50%;
+    background: linear-gradient(to top, #ff416c, #ff4b2b); /* Un degradado neón llamativo */
+    border: 2px solid #fff;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.6);
+    z-index: 5;
+}
+
+/* Cuando la nota ya cruzó la línea azul y el usuario la dejó pasar */
+.nota-bloque.pass {
+    opacity: 0.25;
+    background: #444 !important;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ============================================================
+   ANIMACIONES DE IMPACTO (HIT EFFECTS)
+   ============================================================ */
+
+/* 1. Animación para la nota que explota */
+.nota-bloque.hit-explosion {
+    animation: explotarNota 0.25s ease-out forwards;
+    pointer-events: none; /* Evita cualquier interacción mientras desaparece */
+}
+
+@keyframes explotarNota {
+    0% {
+        transform: scale(1);
+        background: linear-gradient(to top, #11998e, #38ef7d) !important;
+        box-shadow: 0 0 30px #38ef7d, 0 0 50px #38ef7d;
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2); /* Se expande un poco */
+        box-shadow: 0 0 40px #38ef7d, 0 0 70px #38ef7d;
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.4); /* Se desvanece expandiéndose */
+        box-shadow: 0 0 10px #38ef7d;
+        opacity: 0;
+    }
+}
+
+/* 2. Animación para el destello de la línea de impacto */
+.hit-line-flash {
+    animation: destelloLinea 0.15s ease-out;
+}
+
+@keyframes destelloLinea {
+    0% {
+        background-color: #38ef7d !important; /* Cambia a verde neón instantáneo */
+        box-shadow: 0 0 25px #38ef7d, 0 0 45px #38ef7d;
+    }
+    100% {
+        background-color: #00d2ff; /* Regresa a su azul original suavemente */
+        box-shadow: none;
+    }
+}

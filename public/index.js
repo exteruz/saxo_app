@@ -20,8 +20,23 @@ socket.addEventListener("message", (event) => {
 
     const msg = JSON.parse(event.data);
 
+    // Cuando llega una nota desde el simulador o servidor externo
     if (msg.type === "note") {
+        // 1. Mostrar textualmente la nota enviada en el recuadro de la pantalla
+        const contenedorNota = document.getElementById("nota-usuario-actual");
+        if (contenedorNota) {
+            contenedorNota.innerText = msg.value; 
+        }
+
+        // 2. Iluminar visualmente el saxofón estático
         seleccionarNota(msg.value);
+
+        // ============================================================
+        // COLOCA ESTO AQUÍ: Envía la nota al motor para sumar puntos
+        // ============================================================
+        if (typeof window.validarNotaUsuario === 'function') {
+            window.validarNotaUsuario(msg.value);
+        }
     }
 
     if (msg.type === "result") {
@@ -29,6 +44,8 @@ socket.addEventListener("message", (event) => {
     }
 
 });
+
+
 window.enviarResultado = function(valor) {
   socket.send(JSON.stringify({
     type: "result",
@@ -98,3 +115,7 @@ function seleccionarNota(nota) {
 
 }
 
+// Exponer la función globalmente para que player.js pueda usarla
+window.mostrarDigitacion = mostrarDigitacion;
+// Al final de tu index.js del navegador, agrega esto para que el motor del juego pueda usarla:
+window.seleccionarNota = seleccionarNota;
