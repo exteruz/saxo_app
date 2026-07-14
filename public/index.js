@@ -30,6 +30,11 @@ socket.addEventListener("message", (event) => {
 
         // 2. Iluminar visualmente el saxofón estático
         seleccionarNota(msg.value);
+        const pressure = document.getElementById("pressure-value");
+
+        if (pressure && msg.pressure !== undefined) {
+    pressure.textContent = Number(msg.pressure).toFixed(3);
+}
 
         // ============================================================
         // COLOCA ESTO AQUÍ: Envía la nota al motor para sumar puntos
