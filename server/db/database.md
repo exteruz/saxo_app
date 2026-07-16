@@ -8,4 +8,4 @@ La tabla esta compuesta por los siguientes fields.
             difficulty TEXT NOT NULL,
             notes TEXT NOT NULL,
 Es importante destacar que el field notes esta compuesto por json el cual consta de la nota correspondiente asi como el valor de tiempo 
-que esta dura.
+que duracion
