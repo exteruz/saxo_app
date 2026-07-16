@@ -56,3 +56,23 @@ El campo `notes` almacena la secuencia de la canción utilizando un formato estr
     "duration": 1.0
   }
 ]
+
+
+## Proceso para Agregar una Nueva Canción
+
+El sistema cuenta con un flujo automatizado para procesar archivos de audio físicos y transformarlos en datos estructurados dentro de la base de datos. Este proceso permite descomponer una melodía en sus notas musicales correspondientes de forma automática.
+
+### Pasos para Registrar una Canción
+
+Para añadir una nueva pista al catálogo del juego, sigue este procedimiento:
+
+1. **Guardar el archivo de audio:**
+   Coloca el archivo de la canción en formato **`.wav`** dentro de la carpeta denominada `songs` en el directorio del proyecto.
+
+2. **Configurar los metadatos:**
+   Configura los parámetros iniciales de la canción, tales como el **nombre de la canción** y el **autor/compositor** (esto puede realizarse directamente en las variables del script de importación o mediante el archivo de configuración correspondiente).
+
+3. **Ejecutar el script de procesamiento:**
+   Abre tu terminal y ejecuta el script de automatización con el siguiente comando:
+   ```bash
+   node crearSong.js
