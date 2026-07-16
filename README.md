@@ -14,9 +14,9 @@ El proyecto utiliza una arquitectura de red en estrella con un servidor central 
 
 A continuación, se presenta el esquema de interacción de la arquitectura:
 
-![Arquitectura del Sistema y Flujo de Datos](./ruta-de-tu-imagen/arquitectura.png)
+![Arquitectura del Sistema y Flujo de Datos](./app_embebidos.png)
 
-*(Nota: Asegúrate de guardar tu imagen dentro de una carpeta en tu repositorio, por ejemplo en una carpeta llamada `assets`, y reemplaza `./ruta-de-tu-imagen/arquitectura.png` por la ruta real, como `./assets/arquitectura.png`)*.
+
 
 ---
 
