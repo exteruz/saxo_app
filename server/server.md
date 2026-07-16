@@ -21,7 +21,7 @@ El servidor actúa como un intermediario o puente de datos, facilitando el inter
 
 ---
 
-### Configuración de Red y Despliegue
+### Despliegue
 
 Para poner en marcha el servidor en tu entorno de desarrollo local, se deben tener en cuenta los siguientes parámetros de red y ejecución:
 
