@@ -17,11 +17,20 @@ const CANCIONES_A_CARGAR = [
 
     {
         wavPath: path.join(__dirname, "heyJude.wav"),
-        name: "Mi Corazón Encantado",
-        composer: "Nipu",
+        name: "Hey Jude",
+        composer: "The Beatles",
+        bpm: 90,
+        difficulty: "Intermedio",
+    },
+
+        {
+        wavPath: path.join(__dirname, "escala.wav"),
+        name: "Escala de Do Mayor",
+        composer: "Nosotros",
         bpm: 90,
         difficulty: "Fácil",
     },
+
 
 ];
 

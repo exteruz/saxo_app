@@ -1,4 +1,8 @@
+let timerNota = null;
+const TIEMPO_APAGADO = 150; // ms
+
 export const socket = new WebSocket("ws://localhost:3000");
+
 socket.onopen = () => {
   console.log("WS abierto");
 
@@ -20,15 +24,12 @@ socket.addEventListener("message", (event) => {
 
     const msg = JSON.parse(event.data);
 
-    // Cuando llega una nota desde el simulador o servidor externo
     if (msg.type === "note") {
         // 1. Mostrar textualmente la nota enviada en el recuadro de la pantalla
         const contenedorNota = document.getElementById("nota-usuario-actual");
         if (contenedorNota) {
             contenedorNota.innerText = msg.value; 
         }
-
-        // 2. Iluminar visualmente el saxofón estático
         seleccionarNota(msg.value);
         const pressure = document.getElementById("pressure-value");
 
@@ -36,9 +37,7 @@ socket.addEventListener("message", (event) => {
     pressure.textContent = Number(msg.pressure).toFixed(3);
 }
 
-        // ============================================================
-        // COLOCA ESTO AQUÍ: Envía la nota al motor para sumar puntos
-        // ============================================================
+
         if (typeof window.validarNotaUsuario === 'function') {
             window.validarNotaUsuario(msg.value);
         }
@@ -47,6 +46,12 @@ socket.addEventListener("message", (event) => {
     if (msg.type === "result") {
         console.log("Resultado recibido:", msg.value);
     }
+        // Reinicia el temporizador
+    clearTimeout(timerNota);
+
+    timerNota = setTimeout(() => {
+        limpiarNota();
+    }, TIEMPO_APAGADO);
 
 });
 
@@ -61,6 +66,7 @@ window.enviarResultado = function(valor) {
 
 const digitaciones = {
   "Do4":  ["W", "R", "T", "U", "I", "O", "M"],
+  "Do#4": ["NONE"],
   "Re4":  ["W", "R", "T", "U", "I", "O"],
   "Mib4":  ["W", "R", "T", "U", "I", "O", "N"],
   "Mi4":  ["W", "R", "T", "U", "I"],
@@ -71,7 +77,8 @@ const digitaciones = {
   "La4": ["W", "R"],
   "Sib4": ["W","R","V"],
   "Si4":["W"],
-  "Do5": ["R"],  
+  "Do5": ["R"], 
+  "Do#5": ["Z"], 
   "Re5":  ["Z","W", "R", "T", "U", "I", "O"],
   "Mib5":  ["Z","W", "R", "T", "U", "I", "O", "N"],
   "Mi5":  ["Z","W", "R", "T", "U", "I"],
@@ -119,7 +126,25 @@ function seleccionarNota(nota) {
     }
 
 }
+function limpiarNota() {
 
+    // Quitar texto
+    const contenedorNota = document.getElementById("nota-usuario-actual");
+    if (contenedorNota) {
+        contenedorNota.innerText = "";
+    }
+
+    // Apagar teclas
+    document.querySelectorAll(".key, .keyLateral").forEach(k => {
+        k.classList.remove("activa");
+    });
+
+    // Quitar botón resaltado
+    document.querySelectorAll(".btn-nota").forEach(btn => {
+        btn.classList.remove("btn-light");
+        btn.classList.add("btn-outline-light");
+    });
+}
 // Exponer la función globalmente para que player.js pueda usarla
 window.mostrarDigitacion = mostrarDigitacion;
 // Al final de tu index.js del navegador, agrega esto para que el motor del juego pueda usarla:

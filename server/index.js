@@ -119,6 +119,18 @@ wss.on("connection", (ws) => {
         }
 
         if (ws.role === "simulator") {
+            if (typeof data === "object" && data.type === "note") {
+
+            if (data.value === "Do#4") {
+            data.digitacion = "NONE";
+            }
+
+            if (data.value === "Do#5") {
+            data.digitacion = "Z";
+            }
+
+        }
+        
 
             if (clients.web &&
                 clients.web.readyState === WebSocket.OPEN) {
